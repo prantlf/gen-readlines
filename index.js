@@ -91,7 +91,6 @@ function* readlines(fd, filesize, bufferSize, position, maxLineLength) {
  */
 function _concat(buffOne, buffTwo) {
   if (!buffOne) return buffTwo;
-  if (!buffTwo) return buffOne;
 
   let newLength = buffOne.length + buffTwo.length;
   return Buffer.concat([buffOne, buffTwo], newLength);

@@ -211,6 +211,15 @@ describe('The three line file', function() {
 
     assert.equal(3, lines.length);
   });
+
+  it('should return 2 lines when the starting position is shifted', function() {
+    const lines = [];
+    for (let line of readlines(fd, stats.size, undefined, 20)) {
+      lines.push(line);
+    }
+
+    assert.equal(2, lines.length);
+  });
 });
 
 describe('File with empty lines', function() {

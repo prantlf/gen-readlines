@@ -7,7 +7,7 @@
   },
   "main": "index",
   "scripts": {
-    "test": "mocha -R spec tests.js tests-simplified.js",
+    "test": "nyc mocha -R spec tests.js tests-simplified.js",
     "lint": "eslint *.js"
   },
   "repository": {
@@ -30,7 +30,21 @@
     "url": "https://github.com/neurosnap/gen-readlines/issues"
   },
   "homepage": "https://github.com/neurosnap/gen-readlines#readme",
-  "dependencies": {},
+  "nyc": {
+    "include": "index.js",
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "checkCoverage": true,
+    "branches": 100,
+    "statements": 100,
+    "functions": 100,
+    "lines": 100
+  },
+  "dependencies": {
+    "nyc": "^15.1.0"
+  },
   "devDependencies": {
     "eslint": "^7.18.0",
     "mocha": "^8.2.1"
