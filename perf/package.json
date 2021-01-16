@@ -1,0 +1,9 @@
+{
+  "name": "gen-readlines-benchmarks",
+  "private": true,
+  "devDependencies": {
+    "byline": "^5.0.0",
+    "line-reader": "^0.4.0",
+    "linebyline": "^1.3.0"
+  }
+}
