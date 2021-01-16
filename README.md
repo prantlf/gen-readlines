@@ -1,8 +1,20 @@
-gen-readlines [![Build Status](https://travis-ci.org/neurosnap/gen-readlines.svg?branch=master)](https://travis-ci.org/neurosnap/gen-readlines)
-=====================
+# @prantlf/gen-readlines
+
+[![NPM version](https://badge.fury.io/js/%40prantlf%2Fgen-readlines.png)](http://badge.fury.io/js/%40prantlf%2Fgen-readlines)
+[![Build Status](https://github.com/prantlf/gen-readlines/workflows/Test/badge.svg)](https://github.com/prantlf/gen-readlines/actions)
+[![codecov](https://codecov.io/gh/prantlf/gen-readlines/branch/master/graph/badge.svg)](https://codecov.io/gh/prantlf/gen-readlines)
+[![Dependency Status](https://david-dm.org/prantlf/gen-readlines.svg)](https://david-dm.org/prantlf/gen-readlines)
+[![devDependency Status](https://david-dm.org/prantlf/gen-readlines/dev-status.svg)](https://david-dm.org/prantlf/gen-readlines#info=devDependencies)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 A generator based line reader. This node package will return the lines of a file
 as a generator when given file descriptor and the size of the file.
+
+This is a fork of the [original project](https://github.com/neurosnap/gen-readlines) with additional features and fixes:
+
+* Support CR alone as a line break.
+* Allow limiting the maximum line length.
+* No warnings about usage of a deprecated API.
 
 Why?
 ---

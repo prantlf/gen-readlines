@@ -1,6 +1,6 @@
 {
-  "name": "gen-readlines",
-  "version": "0.2.0",
+  "name": "@prantlf/gen-readlines",
+  "version": "1.0.0",
   "description": "Generator based line reader",
   "engines": {
     "node": ">=6"
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/neurosnap/gen-readlines.git"
+    "url": "https://github.com/prantlf/gen-readlines.git"
   },
   "keywords": [
     "generator",
@@ -25,11 +25,20 @@
     "ecma2015"
   ],
   "author": "Eric Bower",
+  "contributors": [
+    "Ferdinand Prantl <prantlf@gmail.com> (http://prantl.tk)"
+  ],
   "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/prantlf/gen-readlines/blob/master/LICENSE.md"
+    }
+  ],
   "bugs": {
-    "url": "https://github.com/neurosnap/gen-readlines/issues"
+    "url": "https://github.com/prantlf/gen-readlines/issues"
   },
-  "homepage": "https://github.com/neurosnap/gen-readlines#readme",
+  "homepage": "https://github.com/prantlf/gen-readlines#readme",
   "nyc": {
     "include": "index.js",
     "reporter": [
@@ -42,11 +51,9 @@
     "functions": 100,
     "lines": 100
   },
-  "dependencies": {
-    "nyc": "^15.1.0"
-  },
   "devDependencies": {
-    "eslint": "^7.18.0",
-    "mocha": "^8.2.1"
+    "eslint": "7.18.0",
+    "mocha": "8.2.1",
+    "nyc": "15.1.0"
   }
 }
