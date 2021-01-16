@@ -12,12 +12,15 @@ const CR = 13;
  * @param {Number} [filesize] The size of the file in bytes
  * @param {Number} [bufferSize] The size of the buffer in bytes
  * @param {Number} [position] The position where to start reading the file in bytes
+ * @param {Number} [maxLineLength] The length to stop reading at if no line break has been reached
  * @return {Object} The generator object
  */
-function* readlines(fd, filesize, bufferSize, position) {
+function* readlines(fd, filesize, bufferSize, position, maxLineLength) {
   if (typeof bufferSize === 'undefined') bufferSize = 64 * 1024;
   if (typeof position === 'undefined') position = 0;
+  if (!(maxLineLength > 0)) maxLineLength = Infinity;
 
+  const originalMaxLineLength = maxLineLength;
   let lineBuffer;
 
   while (position < filesize) {
@@ -34,8 +37,12 @@ function* readlines(fd, filesize, bufferSize, position) {
     while (curpos < bytesRead) {
       curbyte = readChunk[curpos];
       // skip LF if last chunk ended in CR
-      if (curbyte === LF && lastbyte !== CR || curbyte === CR && curpos < bytesRead - 1) {
-        yield _concat(lineBuffer, readChunk.slice(startpos, curpos));
+      if (curbyte === LF && lastbyte !== CR ||
+          curbyte === CR && curpos < bytesRead - 1 ||
+          curpos - startpos >= maxLineLength) {
+        const wantedLength = yield _concat(lineBuffer, readChunk.slice(startpos, curpos));
+        // change the maximum length to the parameter of next()
+        maxLineLength = wantedLength > 0 ? wantedLength : originalMaxLineLength;
 
         lineBuffer = undefined;
         startpos = curpos + 1;
@@ -80,13 +87,15 @@ function _concat(buffOne, buffTwo) {
  * Generator based line reader with simplified API
  *
  * @param {string} [filename] Name of input file
+ * @param {Number} [bufferSize] The size of the buffer in bytes
+ * @param {Number} [maxLineLength] The length to stop reading at if no line break has been reached
  * @return {Object} The generator object
  */
-function* fromFile(filename) {
+function* fromFile(filename, bufferSize, maxLineLength) {
   const fd = fs.openSync(filename, 'r');
   const fileSize = fs.statSync(filename).size;
 
-  yield* readlines(fd, fileSize);
+  yield* readlines(fd, fileSize, bufferSize, undefined, maxLineLength);
 
   fs.closeSync(fd);
 }
