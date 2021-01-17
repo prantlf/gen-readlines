@@ -30,7 +30,7 @@ Install
 -------
 
 ```
-npm install gen-readlines
+npm install @prantlf/gen-readlines
 ```
 
 Usage
@@ -42,7 +42,7 @@ create a generator which will iterate through all the lines in that file.
 ```js
 const fs = require('fs');
 const util = require('util');
-const readlines = require('gen-readlines');
+const readlines = require('@prantlf/gen-readlines');
 
 const open = util.promisify(fs.open);
 const fstat = util.promisify(fs.fstat);
@@ -109,7 +109,7 @@ line = file.next();     // 255 characters maximum again
 
 Also you can use the simplified version of `readlines`:
 ```js
-const readlines = require('gen-readlines');
+const readlines = require('@prantlf/gen-readlines');
 
 for (let line of readlines.fromFile('./file.txt')) {
   console.log(line.toString());
